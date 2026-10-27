@@ -1,3 +1,137 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-neutral-50 text-neutral-900 dark:bg-finsight-bg dark:text-slate-100;
+    }
+}
+
+@layer components {
+    .glass-card {
+        @apply bg-white border border-neutral-200 rounded-2xl shadow-sm;
+        @apply dark:bg-white/5 dark:backdrop-blur-xl dark:border-white/10 dark:shadow-lg dark:shadow-black/20;
+    }
+
+    .glass-card-hover {
+        @apply glass-card transition-all duration-300;
+        @apply hover:bg-neutral-50 hover:border-neutral-300 hover:shadow-md;
+        @apply dark:hover:bg-white/[0.08] dark:hover:border-white/20 dark:hover:shadow-cyan-500/10;
+    }
+
+    .glass-panel {
+        @apply bg-white/80 backdrop-blur-md border border-neutral-200;
+        @apply dark:bg-slate-900/40 dark:border-white/10;
+    }
+
+    .glass-nav {
+        @apply bg-white/90 backdrop-blur-xl border-b border-neutral-200;
+        @apply dark:bg-slate-950/70 dark:border-white/10;
+    }
+
+    .glass-input {
+        @apply bg-white border border-neutral-300 rounded-xl px-4 py-3 text-neutral-900 placeholder-neutral-400;
+        @apply focus:outline-none focus:ring-2 focus:ring-neutral-900/20 focus:border-neutral-400 transition-all;
+        @apply dark:bg-white/5 dark:border-white/10 dark:text-slate-100 dark:placeholder-slate-500;
+        @apply dark:focus:ring-cyan-400/50 dark:focus:border-cyan-400/30;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded-xl bg-neutral-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm;
+        @apply transition-all duration-300 hover:bg-neutral-700;
+        @apply dark:bg-cyan-500 dark:text-slate-950 dark:shadow-lg dark:shadow-cyan-500/20 dark:hover:bg-cyan-400 dark:hover:shadow-cyan-400/30;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center rounded-xl border border-neutral-300 bg-white px-5 py-2.5 text-sm font-semibold text-neutral-700;
+        @apply transition-all duration-300 hover:bg-neutral-50 hover:border-neutral-400;
+        @apply dark:border-white/20 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10 dark:hover:border-white/30;
+    }
+
+    .badge-accent {
+        @apply inline-flex rounded-full border border-neutral-300 bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700;
+        @apply dark:border-cyan-400/30 dark:bg-cyan-400/10 dark:text-cyan-300;
+    }
+
+    .section-label {
+        @apply text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500;
+        @apply dark:text-cyan-400;
+    }
+
+    .text-muted {
+        @apply text-neutral-500 dark:text-slate-400;
+    }
+
+    /* ── Table helpers ── */
+    .table-glass thead {
+        @apply bg-neutral-50 dark:bg-white/5;
+    }
+
+    .table-glass tbody {
+        @apply divide-y divide-neutral-200 dark:divide-white/10;
+    }
+
+    .table-glass th {
+        @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-neutral-500 dark:text-slate-400;
+    }
+
+    .table-glass td {
+        @apply px-6 py-4 whitespace-nowrap text-sm text-neutral-700 dark:text-slate-200;
+    }
+}
+
+/* ── Global table row dark mode ── */
+.dark tbody tr {
+    background-color: transparent;
+}
+.dark tbody tr:hover {
+    background-color: rgba(255,255,255,0.03);
+}
+
+/* ── Nav user-dropdown button: clean dark styles ── */
+.dark .nav-user-btn {
+    color: #e2e8f0;
+    background-color: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.dark .nav-user-btn:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+/* ── Roast Mode toggle (replaces Tailwind peer-checked which may not compile) ── */
+.roast-toggle-track {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    width: 2.5rem;   /* 40px */
+    height: 1.375rem; /* 22px */
+    border-radius: 9999px;
+    background-color: #d1d5db; /* neutral-300 */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+.roast-toggle-track.active {
+    background-color: #ef4444; /* red-500 */
+}
+.roast-toggle-thumb {
+    position: absolute;
+    left: 2px;
+    width: 1.125rem;  /* 18px */
+    height: 1.125rem;
+    border-radius: 9999px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+.roast-toggle-track.active .roast-toggle-thumb {
+    transform: translateX(1.125rem); /* 18px */
+}
+.dark .roast-toggle-track {
+    background-color: rgba(255,255,255,0.15);
+}
+.dark .roast-toggle-track.active {
+    background-color: #ef4444;
+}

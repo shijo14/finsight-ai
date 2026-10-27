@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['investment_type', 'name', 'amount_invested', 'current_value', 'investment_date'])]
+#[Fillable(['user_id', 'investment_type', 'name', 'amount_invested', 'current_value', 'investment_date'])]
 class Investment extends Model
 {
     protected $casts = [

@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competitor;
+use App\Services\CompetitorAnalysisService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CompetitorController extends Controller
 {
+    public function __construct(private readonly CompetitorAnalysisService $analysisService)
+    {
+    }
+
     public function index(): View
     {
-        $competitors = auth()->user()->competitors()->latest()->get();
+        $user        = auth()->user();
+        $competitors = $user->competitors()->latest()->get();
+        $aiAnalysis  = $this->analysisService->generate($user);
 
-        return view('competitors.index', compact('competitors'));
+        return view('competitors.index', compact('competitors', 'aiAnalysis'));
     }
 
     public function create(): View

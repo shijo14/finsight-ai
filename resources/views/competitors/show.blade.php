@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl text-neutral-900 dark:text-white leading-tight">
                 Competitor Profile: {{ $competitor->building_name }}
             </h2>
             <div class="space-x-2">
-                <a href="{{ route('competitors.edit', $competitor) }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md shadow-sm hover:bg-indigo-700 font-semibold text-sm transition">Edit</a>
-                <a href="{{ route('competitors.index') }}" class="text-sm font-semibold text-gray-600 hover:text-gray-900 transition">Back to List</a>
+                <a href="{{ route('competitors.edit', $competitor) }}" class="inline-flex items-center px-4 py-2 btn-primary rounded-md shadow-sm font-semibold text-sm transition">Edit</a>
+                <a href="{{ route('competitors.index') }}" class="text-sm font-semibold text-neutral-500 dark:text-slate-400 hover:text-neutral-900 dark:text-slate-100 transition">Back to List</a>
             </div>
         </div>
     </x-slot>
@@ -21,17 +21,17 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-xl border border-gray-100 p-6">
+            <div class="glass-card overflow-hidden sm:rounded-xl p-6">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <!-- Left: details -->
                     <div class="lg:col-span-5 space-y-6">
                         <div>
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-800">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-neutral-200 dark:bg-white/10 text-neutral-800 dark:text-slate-200">
                                 {{ $competitor->name }}
                             </span>
-                            <h3 class="text-2xl font-bold text-gray-900 mt-2">{{ $competitor->building_name }}</h3>
-                            <p class="text-sm text-gray-500 mt-1 flex items-center">
-                                <svg class="h-4 w-4 mr-1 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <h3 class="text-2xl font-bold text-neutral-900 dark:text-slate-100 mt-2">{{ $competitor->building_name }}</h3>
+                            <p class="text-sm text-neutral-500 dark:text-slate-400 mt-1 flex items-center">
+                                <svg class="h-4 w-4 mr-1 text-neutral-500 dark:text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 </svg>
                                 {{ $competitor->address }}
@@ -40,35 +40,35 @@
 
                         <!-- Core Metrics Card Grid -->
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 text-center">
-                                <span class="text-xs text-gray-500 uppercase font-semibold">Average Rent</span>
-                                <h4 class="text-2xl font-bold text-indigo-700 mt-1">
-                                    {{ $competitor->average_rent ? '$' . number_format($competitor->average_rent, 2) : 'N/A' }}
+                            <div class="bg-neutral-100 dark:bg-white/5 rounded-xl p-4 border border-neutral-200 dark:border-white/10 text-center">
+                                <span class="text-xs text-neutral-500 dark:text-slate-400 uppercase font-semibold">Average Rent</span>
+                                <h4 class="text-2xl font-bold text-neutral-900 dark:text-slate-100 mt-1">
+                                    {{ $competitor->average_rent ? format_money($competitor->average_rent) : 'N/A' }}
                                 </h4>
-                                <span class="text-[10px] text-gray-400 mt-0.5 block">per month</span>
+                                <span class="text-[10px] text-neutral-500 dark:text-slate-500 mt-0.5 block">per month</span>
                             </div>
 
-                            <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 text-center">
-                                <span class="text-xs text-gray-500 uppercase font-semibold">Occupancy Rate</span>
-                                <h4 class="text-2xl font-bold text-indigo-700 mt-1">
+                            <div class="bg-neutral-100 dark:bg-white/5 rounded-xl p-4 border border-neutral-200 dark:border-white/10 text-center">
+                                <span class="text-xs text-neutral-500 dark:text-slate-400 uppercase font-semibold">Occupancy Rate</span>
+                                <h4 class="text-2xl font-bold text-neutral-900 dark:text-slate-100 mt-1">
                                     {{ $competitor->occupancy_rate ? $competitor->occupancy_rate . '%' : 'N/A' }}
                                 </h4>
-                                <span class="text-[10px] text-gray-400 mt-0.5 block">active tenants</span>
+                                <span class="text-[10px] text-neutral-500 dark:text-slate-500 mt-0.5 block">active tenants</span>
                             </div>
                         </div>
 
                         <!-- Notes Section -->
-                        <div class="bg-gray-50 rounded-xl p-5 border border-gray-100 space-y-2">
-                            <h4 class="font-semibold text-gray-900 text-sm">Notes & Remarks</h4>
+                        <div class="bg-neutral-100 dark:bg-white/5 rounded-xl p-5 border border-neutral-200 dark:border-white/10 space-y-2">
+                            <h4 class="font-semibold text-neutral-900 dark:text-slate-100 text-sm">Notes & Remarks</h4>
                             @if($competitor->notes)
-                                <p class="text-sm text-gray-700 leading-relaxed italic">"{{ $competitor->notes }}"</p>
+                                <p class="text-sm text-neutral-700 dark:text-slate-300 leading-relaxed italic">"{{ $competitor->notes }}"</p>
                             @else
-                                <p class="text-sm text-gray-400 italic">No notes recorded for this competitor building.</p>
+                                <p class="text-sm text-neutral-500 dark:text-slate-500 italic">No notes recorded for this competitor building.</p>
                             @endif
                         </div>
 
                         <!-- Coordinates details -->
-                        <div class="text-xs text-gray-400 flex items-center justify-between border-t pt-4">
+                        <div class="text-xs text-neutral-500 dark:text-slate-500 flex items-center justify-between border-t pt-4">
                             <span><strong>Latitude:</strong> {{ $competitor->latitude }}</span>
                             <span><strong>Longitude:</strong> {{ $competitor->longitude }}</span>
                             <span><strong>Added:</strong> {{ $competitor->created_at->format('M j, Y') }}</span>
@@ -85,12 +85,12 @@
 
                     <!-- Right: Mini Map -->
                     <div class="lg:col-span-7 flex flex-col space-y-4">
-                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-100 flex-1 flex flex-col min-h-[350px]">
+                        <div class="bg-neutral-100 dark:bg-white/5 rounded-xl p-4 border border-neutral-200 dark:border-white/10 flex-1 flex flex-col min-h-[350px]">
                             <div class="mb-3 flex justify-between items-center">
-                                <h4 class="font-semibold text-gray-900 text-sm">Building Location</h4>
-                                <span class="text-xs text-gray-400">Fixed Point Marker</span>
+                                <h4 class="font-semibold text-neutral-900 dark:text-slate-100 text-sm">Building Location</h4>
+                                <span class="text-xs text-neutral-500 dark:text-slate-500">Fixed Point Marker</span>
                             </div>
-                            <div id="show-map" class="flex-1 rounded-lg border border-gray-200 overflow-hidden shadow-inner bg-white" style="min-height: 300px;"></div>
+                            <div id="show-map" class="flex-1 rounded-lg border border-neutral-200 dark:border-white/10 overflow-hidden shadow-inner bg-white" style="min-height: 300px;"></div>
                         </div>
                     </div>
                 </div>
